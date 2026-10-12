@@ -1,0 +1,808 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Band | Music & Tour</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+        rel="stylesheet"
+    >
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 60px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #222;
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            width: 100%;
+            min-height: 50px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 12px #00000025;
+        }
+
+        .navbar ul {
+            display: flex;
+            align-items: center;
+            list-style: none;
+        }
+
+        .navbar ul > li {
+            position: relative;
+            min-height: 50px;
+            padding: 0 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .navbar ul > li:hover {
+            background: #ddd;
+            color: #111;
+        }
+
+        .navbar .ri-search-line {
+            min-width: 50px;
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .navbar .ri-search-line:hover {
+            background: orangered;
+        }
+
+        /* DROPDOWN */
+        .navbar ol {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 180px;
+            background: #fff;
+            color: #222;
+            list-style: none;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 8px 20px #00000025;
+        }
+
+        .navbar ol li {
+            width: 100%;
+            min-height: 42px;
+            padding: 10px 15px;
+            justify-content: flex-start;
+            white-space: nowrap;
+        }
+
+        .navbar ol li:hover {
+            background: #ddd;
+        }
+
+        .navbar ul > li:hover ol {
+            display: flex;
+        }
+
+        /* HERO */
+        .bgimage {
+            width: 100%;
+            min-height: 100vh;
+            background-image:
+                linear-gradient(to top, #00000065, transparent 50%),
+                url("https://www.w3schools.com/w3images/la.jpg");
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding: 40px 20px;
+        }
+
+        .txt {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 2px 8px #000;
+        }
+
+        .txt p:first-child {
+            font-size: 26px;
+            font-weight: 600;
+        }
+
+        .txt p:last-child {
+            font-size: 15px;
+        }
+
+        /* BAND */
+        .band {
+            width: 100%;
+            padding: 75px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .band1txt {
+            width: min(100%, 750px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .band1txt h1,
+        .tourtxt h1,
+        .contxt h1 {
+            font-size: 30px;
+            font-weight: 500;
+            letter-spacing: 3px;
+        }
+
+        .band1txt > p:first-of-type {
+            color: #777;
+            font-style: italic;
+        }
+
+        .band1txt > p:last-of-type {
+            text-align: justify;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .name {
+            width: min(100%, 650px);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .picsband {
+            width: min(100%, 700px);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .picsband img {
+            width: 150px;
+            max-width: 30%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .picsband img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 22px #00000020;
+        }
+
+        /* TOUR */
+        .tour {
+            width: 100%;
+            min-height: 100vh;
+            padding: 70px 20px;
+            background: #111;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .tourtxt {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .tourtxt p {
+            color: #aaa;
+            font-style: italic;
+        }
+
+        .soldpar {
+            width: min(100%, 750px);
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            color: #777;
+        }
+
+        .soldtxteach,
+        .soldtxteach1 {
+            width: 100%;
+            min-height: 48px;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .soldtxteach1 {
+            justify-content: space-between;
+        }
+
+        .soldtxteach button {
+            padding: 5px 9px;
+            background: #f44336;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+        }
+
+        .soldtxteach1 #circlebtn {
+            width: 25px;
+            height: 25px;
+            padding: 0;
+            border-radius: 50%;
+            background: #111;
+            color: #fff;
+            border: none;
+        }
+
+        .citypar {
+            width: min(100%, 900px);
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .eachcity {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 0 0 18px;
+            background: #fff;
+            color: #222;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 5px 18px #00000020;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .eachcity:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px #00000035;
+        }
+
+        .eachcity img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            transition: opacity 0.3s;
+        }
+
+        .eachcity img:hover {
+            opacity: 0.8;
+        }
+
+        .eachcity p,
+        .eachcity button {
+            margin-left: 14px;
+            margin-right: 14px;
+        }
+
+        .eachcity p {
+            font-size: 14px;
+        }
+
+        .eachcity p:nth-of-type(1) {
+            color: #777;
+        }
+
+        .eachcity button {
+            padding: 9px 13px;
+            background: #111;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .eachcity button:hover {
+            background: #777;
+        }
+
+        /* CONTACT */
+        .con {
+            width: 100%;
+            padding: 70px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .contxt {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            text-align: center;
+        }
+
+        .contxt p {
+            color: #777;
+            font-style: italic;
+        }
+
+        .locpar {
+            width: min(100%, 750px);
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            align-items: start;
+            gap: 25px;
+            padding: 10px 0;
+        }
+
+        .loc {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 10px 0;
+        }
+
+        .loc i {
+            display: inline-block;
+            width: 25px;
+            font-size: 18px;
+        }
+
+        .form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .eachform {
+            width: 100%;
+            display: flex;
+            gap: 10px;
+        }
+
+        .eachform input {
+            width: 100%;
+            min-width: 0;
+            padding: 12px;
+            border: 1px solid #ccc;
+            font: inherit;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .eachform input:focus {
+            border-color: #555;
+            box-shadow: 0 0 0 2px #00000010;
+        }
+
+        .eachform1 {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .eachform1 button {
+            padding: 10px 18px;
+            background: #111;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .eachform1 button:hover {
+            background: #777;
+        }
+
+        /* MAP */
+        .cityimg {
+            width: 100%;
+            line-height: 0;
+        }
+
+        .cityimg img {
+            width: 100%;
+            max-height: 600px;
+            object-fit: cover;
+        }
+
+        /* FOOTER */
+        .footer {
+            width: 100%;
+            min-height: 150px;
+            padding: 35px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            color: #777;
+            text-align: center;
+        }
+
+        .footer .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer .icon i {
+            font-size: 23px;
+            cursor: pointer;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .footer .icon i:hover {
+            color: #111;
+            transform: translateY(-3px);
+        }
+
+        .footer a {
+            color: #777;
+        }
+
+        /* TABLET */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 5px;
+            }
+
+            .navbar ul > li {
+                padding: 0 12px;
+                font-size: 13px;
+            }
+
+            .citypar {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .eachcity:last-child {
+                grid-column: 1 / -1;
+                width: calc(50% - 11px);
+                justify-self: center;
+            }
+
+            .locpar {
+                grid-template-columns: 1fr 1.2fr;
+            }
+
+            .band1txt {
+                width: 100%;
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 520px) {
+            html {
+                scroll-padding-top: 100px;
+            }
+
+            .navbar {
+                min-height: 50px;
+                padding: 0;
+                flex-wrap: wrap;
+                position: sticky;
+                top: 0;
+            }
+
+            .navbar ul {
+                width: 100%;
+                min-height: 45px;
+                justify-content: space-around;
+            }
+
+            .navbar ul > li {
+                flex: 1;
+                min-height: 45px;
+                padding: 0 5px;
+                font-size: 11px;
+            }
+
+            .navbar .ri-search-line {
+                display: none;
+            }
+
+            .navbar ol {
+                top: 45px;
+                width: 150px;
+            }
+
+            .navbar ol li {
+                flex: none;
+                font-size: 12px;
+            }
+
+            .bgimage {
+                min-height: 75vh;
+            }
+
+            .txt p:first-child {
+                font-size: 22px;
+            }
+
+            .band,
+            .con {
+                padding: 50px 18px;
+            }
+
+            .band1txt h1,
+            .tourtxt h1,
+            .contxt h1 {
+                font-size: 25px;
+            }
+
+            .band1txt > p:last-of-type {
+                font-size: 14px;
+            }
+
+            .name {
+                gap: 10px;
+                font-size: 13px;
+            }
+
+            .picsband {
+                gap: 12px;
+            }
+
+            .picsband img {
+                width: 30%;
+                max-width: 130px;
+                border-radius: 7px;
+            }
+
+            .tour {
+                padding: 50px 15px;
+            }
+
+            .citypar {
+                grid-template-columns: 1fr;
+                max-width: 380px;
+            }
+
+            .eachcity:last-child {
+                grid-column: auto;
+                width: 100%;
+            }
+
+            .eachcity img {
+                aspect-ratio: 16 / 9;
+            }
+
+            .locpar {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .loc {
+                padding: 0;
+            }
+
+            .eachform {
+                gap: 8px;
+            }
+
+            .eachform input {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .cityimg img {
+                min-height: 220px;
+                object-fit: cover;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <ul>
+            <li>HOME</li>
+            <li>BAND</li>
+            <li>TOUR</li>
+            <li>CONTACT</li>
+            <li>
+                MORE
+                <ol>
+                    <li>Merchandise</li>
+                    <li>Extras</li>
+                    <li>Media</li>
+                </ol>
+            </li>
+        </ul>
+
+        <i class="ri-search-line"></i>
+    </div>
+
+    <div class="bgimage">
+        <div class="txt">
+            <p>Chicago</p>
+            <p>A new state from singing</p>
+        </div>
+    </div>
+
+    <div class="band">
+        <div class="band1txt">
+            <h1>The Band</h1>
+            <p>We love music</p>
+            <p>
+                We have created a fictional band website. Lorem ipsum dolor sit
+                amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex ea commodo consequat. Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum
+                consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                commodo consequat.
+            </p>
+        </div>
+
+        <div class="name">
+            <p>Name</p>
+            <p>Name</p>
+            <p>Name</p>
+        </div>
+
+        <div class="picsband">
+            <img src="https://www.w3schools.com/w3images/bandmember.jpg" alt="Band member">
+            <img src="https://www.w3schools.com/w3images/bandmember.jpg" alt="Band member">
+            <img src="https://www.w3schools.com/w3images/bandmember.jpg" alt="Band member">
+        </div>
+    </div>
+
+    <div class="tour">
+        <div class="tourtxt">
+            <h1>TOUR DATES</h1>
+            <p>Remember to book your tickets!</p>
+        </div>
+
+        <div class="soldpar">
+            <div class="soldtxteach">
+                September <button>Sold out</button>
+            </div>
+            <div class="soldtxteach">
+                October <button>Sold out</button>
+            </div>
+            <div class="soldtxteach1">
+                November <button id="circlebtn">3</button>
+            </div>
+        </div>
+
+        <div class="citypar">
+            <div class="eachcity">
+                <img src="https://www.w3schools.com/w3images/newyork.jpg" alt="New York">
+                <p>Fri 27 Nov 2016</p>
+                <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+                <button>Buy Tickets</button>
+            </div>
+
+            <div class="eachcity">
+                <img src="https://www.w3schools.com/w3images/newyork.jpg" alt="New York">
+                <p>Fri 27 Nov 2016</p>
+                <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+                <button>Buy Tickets</button>
+            </div>
+
+            <div class="eachcity">
+                <img src="https://www.w3schools.com/w3images/newyork.jpg" alt="New York">
+                <p>Fri 27 Nov 2016</p>
+                <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+                <button>Buy Tickets</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="con">
+        <div class="contxt">
+            <h1>CONTACT</h1>
+            <p>Fan? Drop a note!</p>
+        </div>
+
+        <div class="locpar">
+            <div class="loc">
+                <p><i class="ri-map-pin-line"></i> Chicago U.S.</p>
+                <p><i class="ri-phone-line"></i> Phone: +00 151515</p>
+                <p><i class="ri-mail-line"></i> Email: mail@mail.com</p>
+            </div>
+
+            <div class="form">
+                <div class="eachform">
+                    <input type="text" placeholder="Name" aria-label="Name">
+                    <input type="email" placeholder="Email" aria-label="Email">
+                </div>
+
+                <div class="eachform">
+                    <input type="text" placeholder="Message" aria-label="Message">
+                </div>
+
+                <div class="eachform1">
+                    <button>Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cityimg">
+        <img src="https://www.w3schools.com/w3images/map.jpg" alt="Map">
+    </div>
+
+    <div class="footer">
+        <div class="icon">
+            <i class="ri-facebook-fill"></i>
+            <i class="ri-instagram-fill"></i>
+            <i class="ri-twitter-fill"></i>
+            <i class="ri-linkedin-box-fill"></i>
+            <i class="ri-pinterest-fill"></i>
+            <i class="ri-snapchat-fill"></i>
+        </div>
+
+        <p>Powered by <a href="https://www.w3schools.com/w3css/">w3.css</a></p>
+    </div>
+
+</body>
+</html>
